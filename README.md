@@ -3,10 +3,11 @@
 
 ## Built With
 
-* [ReactJS](https://reactjs.org/)
-* [ReactNative](https://reactnative.dev/)
+* [TypeScript](https://www.typescriptlang.org/)
 * [NodeJS](https://nodejs.org/en/)
 * [Express](https://expressjs.com/)
+* [ReactJS](https://reactjs.org/)
+* [ReactNative](https://reactnative.dev/)
 
 ## Authors
 
