@@ -1,0 +1,185 @@
+@import '../../styles/variables';
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto 0;
+    padding: 64px;
+
+    h1,
+    h2 {
+        font-size: 36px;
+        color: $color-title;
+        margin-bottom: 64px;
+        line-height: 1.3em;
+        font-weight: bold;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    h2 {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+
+    .leaflet-container {
+        height: 340px;
+        margin-bottom: 64px;
+    }
+
+    form {
+        fieldset {
+            margin-bottom: 64px;
+            border: none;
+            padding: 0;
+
+            legend {
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: space-between;
+
+                span {
+                    margin-bottom: 40px;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 24px;
+
+            .input-wrapper + .input-wrapper {
+                margin-top: 0;
+            }
+        }
+
+        .input-wrapper {
+            label {
+                font-size: 14px;
+                margin-bottom: 8px;
+                display: block;
+            }
+
+            input,
+            select {
+                display: block;
+                width: 100%;
+                background: $color-background;
+                border-radius: 8px;
+                padding: 18px 20px;
+                border: none;
+            }
+
+            & + .input-wrapper {
+                margin-top: 24px;
+            }
+        }
+
+        .items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 16px;
+            list-style: none;
+
+            @media only screen and (max-width: 768px) {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            @media only screen and (max-width: 480px) {
+                grid-template-columns: 1fr;
+            }
+
+            .item {
+                background-color: #E1FAEC;
+                color: $color-title;
+                text-align: center;
+                padding: 30px;
+                border: solid 2px #E1FAEC;
+                transition: all .3s ease;
+                border-radius: 8px;
+                cursor: pointer;
+
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    display: block;
+                    margin: 0 auto 30px;
+                }
+
+                &.active {
+                    border-color: $color-primary;
+                    background: linear-gradient(0deg, #E1FAEC 0%, #FFFFFF 100%);
+                }
+            }
+        }
+
+        .submit-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+
+            .submit {
+                padding: 18px 40px;
+                color: #fff;
+                background-color: $color-primary;
+                border-radius: 8px;
+                font-weight: bold;
+                border: none;
+                font-size: 16px;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 580px) {
+        padding: 30px;
+
+        form {
+            fieldset {
+                margin-bottom: 30px;
+            }
+
+            .input-group {
+                display: block;
+
+                .input-wrapper + .input-wrapper {
+                    margin-top: 24px;
+                }
+            }
+        }
+
+        h1, h2 {
+            margin-bottom: 30px;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        h1 {
+            font-size: 30px;
+        }
+
+        form {
+            fieldset {
+                legend {
+                    display: block;
+                    
+                    h2 {
+                        margin-bottom: 14px;
+                    }
+
+                    span {
+                        display: block;
+                        margin-bottom: 30px;
+                    }
+                }
+            }
+
+            .submit {
+                width: 100%;
+            }
+        }
+    }
+}

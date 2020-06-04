@@ -5,7 +5,7 @@ class PointController {
     async create(req: Request, res: Response) {
         const { name, email, whatsapp, image, latitude, longitude, city, state, items } = req.body
 
-        if (! name || ! email || ! whatsapp || ! image || ! latitude || ! longitude || ! city || ! state || ! items) {
+        if (! name || ! email || ! whatsapp || ! latitude || ! longitude || ! city || ! state || ! items) {
             return res.status(422).json({
                 status: false,
                 message: 'Missing fields'
@@ -19,7 +19,7 @@ class PointController {
                 name, 
                 email, 
                 whatsapp, 
-                image, 
+                image: 'temp', 
                 latitude, 
                 longitude, 
                 city, 

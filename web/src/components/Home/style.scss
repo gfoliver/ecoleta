@@ -1,0 +1,74 @@
+@import '../../styles/variables';
+
+.hero {
+    height: calc(100vh - 124px);
+    padding-top: 20vh;
+    display: flex;
+    background: url('../../img/home-background.svg') no-repeat;
+    background-position: right bottom;
+    background-size: contain;
+
+    h1 {
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+        font-size: 54px;
+        margin-bottom: 24px;
+        color: $color-title;
+        line-height: 1.2em;
+    }
+
+    .subtitle {
+        font-size: 24px;
+        line-height: 1.5em;
+        margin-bottom: 40px;
+    }
+
+    .link {
+        border-radius: 8px;
+        background-color: $color-primary;
+        width: fit-content;
+        display: flex;
+        color: #fff;
+        text-decoration: none;
+
+        .icon {
+            padding: 24px;
+            background-color: darken($color-primary, 10%);
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        .text {
+            padding: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    @media only screen and (max-width: 1100px) {
+        background: none;
+    }
+
+    @media only screen and (max-width: 580px) {
+        padding-top: 5vh;
+
+        h1 {
+            font-size: 42px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+        }
+    }
+
+    @media only screen and (max-width: 400px) {
+        h1 {
+            font-size: 36px;
+        }
+
+        .link {
+            width: 100%;
+        }
+    }
+}

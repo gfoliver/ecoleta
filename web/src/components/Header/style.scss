@@ -1,0 +1,32 @@
+@import '../../styles/variables';
+
+header {
+    display: flex;
+    padding: 40px 0;
+
+    .logo {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .link {
+        margin-left: auto;
+        text-decoration: none;
+        color: $color-title;
+        display: flex;
+        align-items: center;
+        
+        svg {
+            margin-right: 10px;
+        }
+
+        @media only screen and (max-width: 470px) {
+            font-size: 0px;
+
+            svg {
+                margin-right: 0;
+            }
+        }
+    }
+}
