@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom'
 import SuccessModal from '../Modals/SuccessModal'
 import ErrorModal from '../Modals/ErrorModal'
 import InputMask from 'react-input-mask'
+import ImageUpload from './image'
 
 interface IItem {
     id: number,
@@ -34,6 +35,8 @@ export default function Register() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [whatsapp, setWhatsapp] = useState('')
+    
+    const [file, setFile] = useState<File | null>(null)
     
     const [showSuccess, setShowSuccess] = useState(false)
     const [showError, setShowError] = useState(false)
@@ -81,19 +84,30 @@ export default function Register() {
         }
     }
 
+    function handleFileUpload(file: File) {
+        setFile(file)
+    }
+
     function handleSubmit(e: FormEvent) {
         e.preventDefault()
 
-        api.post('/points', {
-            name,
-            email,
-            whatsapp,
-            items: selectedItems,
-            latitude: location?.latitude,
-            longitude: location?.longitude,
-            state: selectedState,
-            city: selectedCity
-        }).then(response => {
+        let data = new FormData()
+
+        data.append('name', name)
+        data.append('email', email)
+        data.append('whatsapp', whatsapp)
+        data.append('items', selectedItems.join(','))
+        if (location) {
+            data.append('latitude', location.latitude.toString())
+            data.append('longitude', location.longitude.toString())
+        }
+        data.append('state', selectedState)
+        data.append('city', selectedCity)
+        
+        if (file)
+            data.append('image', file)
+
+        api.post('/points', data).then(response => {
             if (response.data.status) {
                 setShowSuccess(true)
                 setTimeout(() => history.push('/'), 2000)
@@ -114,6 +128,7 @@ export default function Register() {
                         ponto de coleta
                     </h1>
                     <form onSubmit={handleSubmit}>
+                        <ImageUpload onFileUploaded={handleFileUpload} />
                         <fieldset>
                             <legend>
                                 <h2>Dados</h2>

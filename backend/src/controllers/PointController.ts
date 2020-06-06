@@ -3,7 +3,7 @@ import connection from '../database/connection'
 
 class PointController {
     async create(req: Request, res: Response) {
-        const { name, email, whatsapp, image, latitude, longitude, city, state, items } = req.body
+        const { name, email, whatsapp, latitude, longitude, city, state, items } = req.body
 
         if (! name || ! email || ! whatsapp || ! latitude || ! longitude || ! city || ! state || ! items) {
             return res.status(422).json({
@@ -19,14 +19,17 @@ class PointController {
                 name, 
                 email, 
                 whatsapp, 
-                image: 'temp', 
-                latitude, 
-                longitude, 
+                image: req.file.filename, 
+                latitude: Number(latitude), 
+                longitude: Number(longitude), 
                 city, 
                 state
             })
     
-            const pointItems = items.map((item_id: number) => ({ item_id, point_id }))
+            const pointItems = items
+                .split(',')
+                .map((item: string) => Number(item.trim()))
+                .map((item_id: number) => ({ item_id, point_id }))
     
             await trx('point_items').insert(pointItems)
     
@@ -61,9 +64,11 @@ class PointController {
                 .distinct()
                 .select('points.*')
 
+            const serializedPoints = points.filter(point => point.image = 'http://192.168.1.3:5000/uploads/' + point.image)
+
             return res.json({
                 status: true,
-                points
+                points: serializedPoints
             })
         } 
         catch (error) {
@@ -88,7 +93,8 @@ class PointController {
                 status: true,
                 point: {
                     ...point,
-                    items
+                    items,
+                    image: 'http://192.168.1.3:5000/uploads/' + point.image
                 }
             })
         }

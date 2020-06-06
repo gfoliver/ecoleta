@@ -61,7 +61,7 @@ const Point = () => {
 
                 {point && (
                     <>
-                        <Image source={{uri: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80'}} style={styles.coverImage} />
+                        <Image source={{uri: point.image}} style={styles.coverImage} />
                         <Text style={styles.title}>{point.name}</Text>
                         {point.items && (
                             point.items.map((item: IItem) => (

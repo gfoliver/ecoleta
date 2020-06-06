@@ -124,7 +124,7 @@ const Points = () => {
                                     }} 
                                     onPress={() => navigateToPoint(point.id)}
                                 >
-                                    <Image style={styles.pointImage} source={{uri: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=60'}} />
+                                    <Image style={styles.pointImage} source={{uri: point.image}} />
                                     <Text style={styles.pointText}>{point.name}</Text>
                                 </Marker>
                             ))}
